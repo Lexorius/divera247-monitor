@@ -57,6 +57,8 @@ Wenn der Termin vorbei ist setzt mal die Topic  tv/duty  wieder auf false.
 
 ## Bewegungsmelderintegration 
 
+### Bewegungsmelder erkennt bewegung : 
+
 Wenn eine Bewegung erkannt wird:
 
 ![Motion detected](https://github.com/Lexorius/divera247-monitor/blob/main/examplepic/automatismus_motion_start.png)
@@ -64,6 +66,15 @@ Wenn eine Bewegung erkannt wird:
 dann setzte die MQTT Topic tv/motion auf true (Retain true)
 
 ![Motion detected](https://github.com/Lexorius/divera247-monitor/blob/main/examplepic/automatismus_motion_start_2.png)
+
+### Bewegungsmelder erkennt keine Bewegung:
+
+![Motion detected](https://github.com/Lexorius/divera247-monitor/blob/main/examplepic/automatismus_motion_end.png)
+
+dann setzte die MQTT Topic tv/motion auf false (Retain true)
+
+![Motion detected](https://github.com/Lexorius/divera247-monitor/blob/main/examplepic/automatismus_motion_end_2.png)
+
 
 
 
