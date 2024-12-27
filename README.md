@@ -18,7 +18,7 @@ Nach Namensänderung des Pi und Festlegung eines Logins
 
     sudo apt update     #erstmal nach updates suchen
     sudo apt upgrade -y # dann updates ausführen
-    sudo apt install mosquitto-client unclutter #mqtt client  und unclutter installieren 
+    sudo apt install mosquitto-client unclutter git #mqtt client  und unclutter installieren 
   
   Scripte holen und installation : 
   
