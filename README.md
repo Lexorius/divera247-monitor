@@ -38,14 +38,33 @@ Nach Namensänderung des Pi und Festlegung eines Logins
     
 # Home assistant :
 
+## Termin Basiertes einschalten des Monitors 
 da der Monitor via Home assistent geschaltet werden kann ist erstmal ein Kalender angelegt worden in dem die Dienste vermerkt sind. Das sind einfache Termine.
 
 ![Termin in HomeAssistant](https://github.com/Lexorius/divera247-monitor/blob/main/examplepic/Event-1.png)
 
 Die Schaltung erfolgt via Automatismus-Logic in HA - Wenn ein Termin beginnt (oder hier eine Stunde bevor der Termin beginnt)
+
 ![Automatismus Wenn kalendereintrag startet](https://github.com/Lexorius/divera247-monitor/blob/main/examplepic/Automatismus_event_start.png)
+
 setzte in MQTT die topic tv/duty auf true (RETAIN TRUE)
-![Automatismus setzte MQTT TOPIC](https://github.com/Lexorius/divera247-monitor/blob/main/examplepic/Automatismus_event_start.png)
+
+![Automatismus setzte MQTT TOPIC](https://github.com/Lexorius/divera247-monitor/blob/main/examplepic/Automatismus_event_start-2.png)
+
+## Terminbasiertes Ausschalten
+
+Wenn der Termin vorbei ist setzt mal die Topic  tv/duty  wieder auf false. 
+
+## Bewegungsmelderintegration 
+
+Wenn eine Bewegung erkannt wird:
+
+![Motion detected](https://github.com/Lexorius/divera247-monitor/blob/main/examplepic/automatismus_motion_start.png)
+
+dann setzte die MQTT Topic tv/motion auf true (Retain true)
+
+![Motion detected](https://github.com/Lexorius/divera247-monitor/blob/main/examplepic/automatismus_motion_start_2.png)
+
 
 
 
