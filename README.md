@@ -2,7 +2,7 @@
 
 Das Projekt basiert auf den Scripten von  https://family-giese.de/Bewegungsmelder  - ist aber modifiziert. 
 Leider ist die Firmware für die Bewegungsmelder Closed Sources und nur auf dem esp8266 verfügbar. Somit ist es für mich unbrauchbar.
-Wenn Du es einfach willst, nimm die Divera Monitor APP und die Anleitung von der Divera Homepage. Das hier ist ein bisschen Fortgetrittener. 
+Wenn Du es einfach willst, nimm die Divera Monitor APP und die Anleitung von der Divera Homepage. Das hier ist ein bisschen Fortgeschrittener. 
 
 Wir haben beispielsweise ein "alten" TV der sich nicht gut Fernsteuern lässt und ein Homeassistent der die Bewegungssteuerung übernimmt und den TV via Kalender steuert. 
 
