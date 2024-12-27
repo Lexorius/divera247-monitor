@@ -35,3 +35,19 @@ Nach Namensänderung des Pi und Festlegung eines Logins
     sudo echo "Name=Divera Kiosk" >> ~/.config/autostart/divera.desktop
     sudo chmod 644 ~/.config/autostart/divera.desktop
     sudo reboot
+    
+# Home assistant :
+
+da der Monitor via Home assistent geschaltet werden kann ist erstmal ein Kalender angelegt worden in dem die Dienste vermerkt sind. Das sind einfache Termine.
+
+https://github.com/Lexorius/divera247-monitor/blob/main/examplepic/Event-1.png
+
+Die Schaltung erfolgt via Automatismus-Logic in HA - Wenn ein Termin beginnt (oder hier eine Stunde bevor der Termin beginnt)
+https://github.com/Lexorius/divera247-monitor/blob/main/examplepic/Automatismus_event_start.png
+setzte in MQTT die topic tv/duty auf true
+https://github.com/Lexorius/divera247-monitor/blob/main/examplepic/Automatismus_event_start.png
+
+
+
+
+
