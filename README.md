@@ -1,11 +1,10 @@
 ###  Einleitung
 
 Das Projekt basiert auf den Scripten von  https://family-giese.de/Bewegungsmelder  - ist aber modifiziert. 
-Leider ist die Firmware für die Bewegungsmelder Closed Sources und nur auf dem esp8266 verfügbar. Das macht kein Sinn. 
+Leider ist die Firmware für die Bewegungsmelder Closed Sources und nur auf dem esp8266 verfügbar. Somit ist es für mich unbrauchbar.
+Wenn Du es einfach willst, nimm die Divera Monitor APP und die Anleitung von der Divera Homepage. Das hier ist ein bisschen Fortgetrittener. 
 
-Ich hab mir das Angeschaut und umgebaut auf ein Connect mit Home Assistant. 
-
-inklusive neuem Feature Dienste via Kalender von dem Homeassistant anzulegen. 
+Wir haben beispielsweise ein "alten" TV der sich nicht gut Fernsteuern lässt und ein Homeassistent der die Bewegungssteuerung übernimmt und den TV via Kalender steuert. 
 
 ###  Installation : 
 
@@ -18,9 +17,21 @@ Nach Namensänderung des Pi und Festlegung eines Logins
   vorher noch notwendige tools installieren 
 
     sudo apt update     #erstmal nach updates suchen
-    sudp apt upgrade -y # dann updates ausführen
-    sudo apt install mosquitto-client  #mqtt client installieren 
-    
-
+    sudo apt upgrade -y # dann updates ausführen
+    sudo apt install mosquitto-client unclutter #mqtt client  und unclutter installieren 
   
-
+  Scripte holen und installation : 
+  
+    cd ~ 
+    git clone https://github.com/Lexorius/divera247-monitor.git
+    cd divera247-monitor
+    sudo cp divera*.sh /usr/local/bin
+    sudo chmod +x /usr/local/bin/divera*.sh 
+    sudo echo "source /usr/local/bin/divera_command.sh" >> /etc/bash.bashrc 
+    sudo mkdir -r ~/.config/autostart/
+    sudo echo "[Desktop Entry]" > ~/.config/autostart/divera.desktop
+    sudo echo "Version=1.0" >> ~/.config/autostart/divera.desktop
+    sudo echo "Exec=/usr/local/bin/divera-monitor-runner.sh" >> ~/.config/autostart/divera.desktop
+    sudo echo "Name=Divera Kiosk" >> ~/.config/autostart/divera.desktop
+    sudo chmod 644 ~/.config/autostart/divera.desktop
+    sudo reboot
