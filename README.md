@@ -69,11 +69,11 @@ dann setzte die MQTT Topic tv/motion auf true (Retain true)
 
 ### Bewegungsmelder erkennt keine Bewegung:
 
-![Motion detected](https://github.com/Lexorius/divera247-monitor/blob/main/examplepic/automatismus_motion_end.png)
+![No Motion detected](https://github.com/Lexorius/divera247-monitor/blob/main/examplepic/Automatismus_motion_end.png)
 
 dann setzte die MQTT Topic tv/motion auf false (Retain true)
 
-![Motion detected](https://github.com/Lexorius/divera247-monitor/blob/main/examplepic/automatismus_motion_end_2.png)
+![NO Motion detected](https://github.com/Lexorius/divera247-monitor/blob/main/examplepic/Automatismus_motion_end_2.png)
 
 
 
