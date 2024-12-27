@@ -25,6 +25,18 @@ source /usr/local/bin/divera_commands.sh
 # at boot show the monitor
 monitor on
 
+# set baseline for mqtt - Messages must be Retained.
+
+mosquitto_pub  -h ${MQTT_SERVER} -u ${MQTT_USER} -P ${MQTT_PASS} -t ${MQTT_MOTION_TOPIC} -r -m false    
+mosquitto_pub  -h ${MQTT_SERVER} -u ${MQTT_USER} -P ${MQTT_PASS} -t ${MQTT_DUTY_TOPIC} -r -m false
+
+function mqtt_status(){
+		mosquitto_pub  -h ${MQTT_SERVER} -u ${MQTT_USER} -P ${MQTT_PASS} -t ${MQTT_STATUS_TOPIC} -r -m "$1"
+
+}
+
+mqtt_status "Script starting up"
+
 
 # we run the script in Desktopenviroment - so lets unclutter
 unclutter -display :0 -noevents - grab
@@ -54,6 +66,7 @@ while true; do
     if [ $HAS_ALARM = true ] && [ $IS_MONITOR_ACTIVE = false ] ; then
         echo "divera alarm is set - display on"
         screen on
+		mqtt_status "Alarm message found. Switching screen on"
         IS_MONITOR_ACTIVE=true
         
     #case: duty time and mission off
@@ -61,33 +74,38 @@ while true; do
     
         echo "MQTT Motion is true -  display on"
         screen on
+		mqtt_status "Motion message found. Switching screen on"
         IS_MONITOR_ACTIVE=true
     
     elif [ $DUTY_TIME = true ] && [ $IS_MONITOR_ACTIVE = false ]; then
         
         echo "MQTT Duty is true - display on"
         screen on
+		mqtt_status "Duty found. Switching screen on"
         IS_MONITOR_ACTIVE=true
 
     #case: no Alarm and no motion and no duty time but monitor on
     elif [ $HAS_ALARM = false ] && [ $MOTION = false ] && [ $DUTY_TIME = false ] && [ $IS_MONITOR_ACTIVE = true ]; then
         echo "Turn display off"
         screen off
+		mqtt_status "No alarm, motion or duty found. Switching screen off"
         IS_MONITOR_ACTIVE=false
     
     #case: monitor off and no mission and it is night time then make updates
     elif [ $HAS_ALARM = false ] && [ $IS_MONITOR_ACTIVE = false ] && [ $HOUR = 3 ] && [ $MINUTES = 5 ]; then
         echo "Maintainance task - update and restarting Raspberry"
-
+		mqtt_status "Maintainance task - update and restarting Raspberry"
         #wait a moment that he wont do two updates when he is faster then a minute with update and reboot
         sleep 45
-
+		mqtt_status "Maintainance task - update and restarting Raspberry - update"
         sudo apt update
+		mqtt_status "Maintainance task - update and restarting Raspberry - upgrade"
         sudo apt --yes --force-yes upgrade
+		mqtt_status "Maintainance task - update and restarting Raspberry - reboot"
         sudo reboot
     fi
     
-   echo "screen $IS_MONITOR_ACTIVE"
+   
     #sleeps 30 seconds and starts again
     sleep 30
 done
